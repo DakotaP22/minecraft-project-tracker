@@ -1,0 +1,27 @@
+<h1>Welcome to the Minecraft Project Tracker</h1>
+
+<!-- create angular material form using registrationFrom from registration-form.component.ts-->
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" color="accent">
+    <input matInput placeholder="Username" formControlName="username">
+    <mat-error *ngIf="registrationForm.get('username')?.hasError('required')">
+      Username is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" color="accent">
+    <input matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">
+      Must enter a valid email
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" color="accent">
+    <input matInput placeholder="Password" formControlName="password" type="password">
+  </mat-form-field>
+  <mat-form-field appearance="outline" color="accent">
+    <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
+</form>

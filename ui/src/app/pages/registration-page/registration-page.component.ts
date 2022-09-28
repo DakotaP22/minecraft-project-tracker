@@ -6,35 +6,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Validators } from '@angular/forms';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 
 @Component({
-  selector: 'app-registration-page',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-  ],
+  imports: [CommonModule, RegistrationFormComponent],
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss'],
 })
 export class RegistrationPageComponent implements OnInit {
-  registrationForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.registrationForm = fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-    });
-  }
+  constructor() {}
 
   ngOnInit(): void {}
-
-  onSubmit() {
-    console.log(this.registrationForm.value);
-  }
 }
