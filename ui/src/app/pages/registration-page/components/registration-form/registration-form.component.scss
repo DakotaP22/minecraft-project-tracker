@@ -13,13 +13,15 @@ h1 {
   font-weight: bold;
   line-height: 56px;
   color: #0F7513;
-  margin: 0 15px;
+  margin: 0 15px 20px 15px;
 }
 
 form {
   width: 100%;
   display: grid;
   place-content: center;
-  grid-template-columns: max(350px, 60%);
+  grid-template-columns: max(350px, 70%);
   grid-template-rows: 1fr;
+  font-size: 12px;
 }
+

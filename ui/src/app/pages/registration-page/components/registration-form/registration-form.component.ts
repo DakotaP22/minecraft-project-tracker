@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'registration-form',
@@ -24,6 +24,12 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
+  @Output() register: EventEmitter<{
+    email: string;
+    username: string;
+    password: string;
+    confirmPassword: string;
+  }> = new EventEmitter();
   registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -38,6 +44,6 @@ export class RegistrationFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.registrationForm.value);
+    this.register.next(this.registrationForm.value);
   }
 }
