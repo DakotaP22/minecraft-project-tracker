@@ -19,13 +19,4 @@ export class AppComponent {
       console.log('user', user);
     });
   }
-
-  displayUserName(user: User | Admin | null) {
-    if (!user) return undefined;
-    else if (user instanceof User) {
-      return user.profile ? user.profile['username'] : undefined;
-    } else {
-      return 'Admin';
-    }
-  }
 }
