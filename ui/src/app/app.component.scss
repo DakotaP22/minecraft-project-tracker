@@ -1,4 +1,13 @@
 :host {
-  display: block;
+  width: 100%;
   height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content min-content 1fr;
+}
+
+
+mat-toolbar > span {
+  font-size: 2rem;
+  font-weight: bolder;
 }

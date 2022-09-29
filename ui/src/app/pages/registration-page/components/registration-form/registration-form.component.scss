@@ -1,0 +1,27 @@
+:host {
+  margin: auto;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  grid-template-columns: clamp(400px, 100%, 600px);
+  row-gap: 1rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 56px;
+  color: #0F7513;
+  margin: 0 15px 20px 15px;
+}
+
+form {
+  width: 100%;
+  display: grid;
+  place-content: center;
+  grid-template-columns: max(350px, 70%);
+  grid-template-rows: 1fr;
+  font-size: 12px;
+}
+

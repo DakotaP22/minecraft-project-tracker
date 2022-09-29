@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  pocketbase: {
+    url: 'http://localhost:8090',
+  },
 };
