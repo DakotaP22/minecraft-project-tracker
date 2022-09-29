@@ -1,4 +1,6 @@
 <mat-toolbar color="primary">
-  <span>Minecraft Project Tracker</span>
+  <span>Minecraft Project Tracker:
+    {{displayUserName(user$ | async)}}
+  </span>
 </mat-toolbar>
 <router-outlet></router-outlet>
