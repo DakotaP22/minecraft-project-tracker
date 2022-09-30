@@ -21,11 +21,9 @@ export class UserService {
 
     this.removeListener = this.client.authStore.onChange(
       async (token: string, model: User | Admin | null) => {
-        console.log('authChange', { token, model });
         this.user$.next(model);
       }
     );
-
     const cookie = this.cookieSvc.get('pocketbase');
     if (cookie) this.client.authStore.loadFromCookie(cookie);
   }
