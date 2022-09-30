@@ -1,4 +1,5 @@
 import { EnvironmentInjector, Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import PocketBase from 'pocketbase';
 import { User, Admin } from 'pocketbase';
 import { BehaviorSubject } from 'rxjs';
@@ -13,7 +14,7 @@ export class UserService {
   private removeListener: any;
   user$: BehaviorSubject<User | Admin | null>;
 
-  constructor() {
+  constructor(private cookieSvc: CookieService) {
     const pocketbaseConnectionUrl = environment.pocketbase.url;
     this.client = new PocketBase(pocketbaseConnectionUrl);
     this.user$ = new BehaviorSubject<any>(null);
@@ -23,6 +24,8 @@ export class UserService {
         this.user$.next(model);
       }
     );
+    const cookie = this.cookieSvc.get('pocketbase');
+    if (cookie) this.client.authStore.loadFromCookie(cookie);
   }
 
   ngOnDestroy() {
@@ -51,6 +54,16 @@ export class UserService {
 
     this.client.authStore.clear();
     await this.client.users.authViaEmail(email, password);
+  }
+
+  async login(email: string, password: string) {
+    await this.client.users.authViaEmail(email, password);
+  }
+
+  async loginAndPersist(email: string, password: string) {
+    await this.client.users.authViaEmail(email, password);
+    const cookie = this.client.authStore.exportToCookie();
+    this.cookieSvc.set('pocketbase', cookie);
   }
 
   async getProfile(id: string) {

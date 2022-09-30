@@ -9,6 +9,13 @@ const routes: Routes = [
         (m) => m.RegistrationPageComponent
       ),
   },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login-page/login-page.component').then(
+        (m) => m.LoginPageComponent
+      ),
+  },
 ];
 
 @NgModule({
